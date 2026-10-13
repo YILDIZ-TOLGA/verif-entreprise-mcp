@@ -53,6 +53,10 @@ Leave out `X402_PRIVATE_KEY` to try it for free: only `apercu_entreprise` works,
 | `VERIF_ENTREPRISE_URL` | production server | Remote MCP endpoint. |
 | `VERIF_ENTREPRISE_NETWORK` | `eip155:8453` | Network used to pay (Base mainnet). |
 
+## Webhooks and attestations
+
+Monitoring alerts are signed (`X-Verif-Signature`) and every paid verification carries an Ed25519 attestation you can keep as KYB proof. Verification code in Node.js and Python: [docs/webhooks-et-attestations.md](docs/webhooks-et-attestations.md).
+
 ## Without this bridge
 
 If your agent already speaks x402, call the service directly:
