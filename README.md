@@ -6,6 +6,7 @@ Local MCP server for **[Vérif Entreprise FR](https://api-production-24833.up.ra
 - **$0.01 per call:** `verifier_entreprise` returns the full report: an explained verdict (favorable / vigilance / defavorable), stable signal codes with links to the official notices, insolvency history from BODACC, the intra-EU VAT number checked in VIES, headcount, establishments and labels.
 - **$0.002 per call:** `rechercher_entreprise` finds a SIREN from a company name.
 - **$0.01 per call:** `qualifications_rge` lists the RGE (energy renovation) certifications of an establishment by SIRET.
+- **$0.10 per company:** `surveiller_entreprise` monitors a company for 90 days and alerts you (signed webhook, or polling) whenever a new insolvency proceeding or deregistration is published in BODACC.
 
 A paid call is settled **only if the tool succeeds**: an unknown company or a source outage costs nothing. Data comes from official French open data (Annuaire des Entreprises, BODACC, ADEME) and the European Commission's VIES. No personal data about company officers is returned.
 
@@ -25,7 +26,7 @@ Add this to `claude_desktop_config.json`, then restart Claude Desktop:
       "args": ["-y", "github:YILDIZ-TOLGA/verif-entreprise-mcp"],
       "env": {
         "X402_PRIVATE_KEY": "0x… private key of a wallet holding USDC on Base",
-        "VERIF_ENTREPRISE_MAX_USD": "0.01"
+        "VERIF_ENTREPRISE_MAX_USD": "0.10"
       }
     }
   }
@@ -48,7 +49,7 @@ Leave out `X402_PRIVATE_KEY` to try it for free: only `apercu_entreprise` works,
 | Variable | Default | Role |
 | --- | --- | --- |
 | `X402_PRIVATE_KEY` | none | Wallet that pays. Without it, only the free tool works. |
-| `VERIF_ENTREPRISE_MAX_USD` | `0.01` | Highest price accepted per call. |
+| `VERIF_ENTREPRISE_MAX_USD` | `0.01` | Highest price accepted per call (set `0.10` to enable `surveiller_entreprise`). |
 | `VERIF_ENTREPRISE_URL` | production server | Remote MCP endpoint. |
 | `VERIF_ENTREPRISE_NETWORK` | `eip155:8453` | Network used to pay (Base mainnet). |
 
