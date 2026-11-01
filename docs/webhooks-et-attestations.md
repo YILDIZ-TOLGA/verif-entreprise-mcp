@@ -1,6 +1,6 @@
 # Webhooks and signed attestations
 
-Vérif Entreprise FR is paid per call with [x402](https://www.x402.org) (USDC on Base or Solana). This page shows how to consume the two trust features from your own code: **BODACC monitoring webhooks** and **signed verification attestations**.
+Vérif Entreprise FR is paid per call with [x402](https://www.x402.org) (USDC on Base). This page shows how to consume the two trust features from your own code: **BODACC monitoring webhooks** and **signed verification attestations**.
 
 Base URL: `https://api-production-24833.up.railway.app`
 
