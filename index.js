@@ -24,7 +24,7 @@ import { registerExactEvmScheme } from "@x402/evm/exact/client";
 import { x402MCPClient } from "@x402/mcp";
 import { privateKeyToAccount } from "viem/accounts";
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 const ENDPOINT =
   process.env.VERIF_ENTREPRISE_URL ?? "https://api-production-24833.up.railway.app/mcp";
 const NETWORK = process.env.VERIF_ENTREPRISE_NETWORK ?? "eip155:8453";
@@ -136,7 +136,7 @@ const server = new Server(
     instructions:
       "French company verification (KYB) by SIREN from official open data. Start with apercu_entreprise " +
       "(free) to triage; use verifier_entreprise for the full report (verdict, sourced signals, insolvency " +
-      "history, VAT checked in VIES). Paid calls are settled only when the tool succeeds.",
+      "history, VAT checked in VIES); other tools: rechercher_entreprise, qualifications_rge, procedures_collectives, entite_lei, gel_avoirs, surveiller_entreprise. Paid calls are settled only when the tool succeeds.",
   },
 );
 

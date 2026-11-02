@@ -1,6 +1,6 @@
 {
   "name": "verif-entreprise-mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Local MCP server for Vérif Entreprise FR: French company verification (KYB) by SIREN, paid per call with x402 from your own wallet. Free preview tool included.",
   "type": "module",
   "bin": {
@@ -27,7 +27,14 @@
     "company-verification",
     "bodacc",
     "vat",
-    "vies"
+    "vies",
+    "mcp-tools",
+    "kyc",
+    "compliance",
+    "sanctions-screening",
+    "lei",
+    "base",
+    "usdc"
   ],
   "license": "MIT",
   "dependencies": {
