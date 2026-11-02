@@ -1,0 +1,2 @@
+x402[requests,evm]>=2.26,<3
+requests>=2.31

@@ -115,6 +115,10 @@ If your agent already speaks x402, call the service directly:
 
 Also listed in the [official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=verif-entreprise-fr) and on [Glama](https://glama.ai/mcp/connectors/app.railway.up.api-production-24833/verif-entreprise-fr).
 
+## Examples
+
+Runnable code in [`examples/`](examples): curl (free preview, reading a 402), Node (`@x402/fetch`: verify, batch, surveillance, webhook HMAC check), Python (official `x402` package), LangChain / Vercel AI SDK / CrewAI tools, and an importable n8n workflow. Every paid example reads the key from `X402_PRIVATE_KEY`, recommends a dedicated wallet and refuses to sign above a price cap.
+
 ## En français
 
 Serveur MCP local pour vérifier une entreprise française par son SIREN depuis Claude Desktop, Cursor ou VS Code : statut, procédures collectives (BODACC), numéro de TVA vérifié auprès de VIES, qualifications RGE, LEI (GLEIF), registre des gels d'avoirs et verdict expliqué. L'aperçu (`apercu_entreprise`) est gratuit, 10 appels par jour. Le rapport complet coûte 0,01 $ par appel (de 0,002 $ à 0,10 $ selon l'outil), payé en USDC sur Base uniquement avec x402 depuis votre propre wallet, sans compte ni abonnement, et n'est jamais facturé en cas d'erreur.
