@@ -18,6 +18,7 @@ Local MCP server for **[Vérif Entreprise FR](https://api-production-24833.up.ra
 | `procedures_collectives` | $0.005 | Insolvency proceedings (BODACC) of a company. |
 | `entite_lei` | $0.01 | Legal Entity Identifier (LEI) record from GLEIF. |
 | `gel_avoirs` | $0.02 | Check the French national asset-freeze register (DG Tresor) for sanctions screening. |
+| `marches_publics` | $0.02 | French public procurement awards by SIREN (DECP, last 24 months): count, value, buyers, CPV sectors, latest contracts. |
 | `surveiller_entreprise` | $0.10 per company | Monitors a company for 90 days and alerts you (signed webhook, or polling) when a new insolvency proceeding or deregistration is published in BODACC. |
 
 Payment is in **USDC on Base only**, through [x402](https://www.x402.org). The tool list is fetched live from the server, so new tools appear without updating the bridge.
@@ -29,7 +30,7 @@ A paid call is settled **only if the tool succeeds**: an unknown company or a so
 Requires Node.js 20 or newer. The same command works in every client: `npx -y github:YILDIZ-TOLGA/verif-entreprise-mcp`, configured with these environment variables:
 
 - `X402_PRIVATE_KEY`: private key of a dedicated wallet holding USDC on Base (optional: without it only the free tool works).
-- `VERIF_ENTREPRISE_MAX_USD`: highest price accepted per call (default `0.01`). Set `0.02` to enable `gel_avoirs`, `0.10` to enable `surveiller_entreprise`.
+- `VERIF_ENTREPRISE_MAX_USD`: highest price accepted per call (default `0.01`). Set `0.02` to enable `gel_avoirs` and `marches_publics`, `0.10` to enable `surveiller_entreprise`.
 
 ### Claude Desktop
 
@@ -89,14 +90,14 @@ Leave out `X402_PRIVATE_KEY` to try it for free: only `apercu_entreprise` works,
 ## Wallet and safety
 
 - Use a **dedicated wallet** holding a few dollars of **USDC on Base**. No ETH is needed: payments are gasless EIP-3009 authorizations, settled by the Coinbase facilitator.
-- The key stays on your machine. It only signs a USDC authorization for the exact amount the server asks, after the bridge checks it is USDC on Base and at most `VERIF_ENTREPRISE_MAX_USD` (default `0.01`, maximum `1`). The default refuses anything above $0.01, so `gel_avoirs` ($0.02) needs `VERIF_ENTREPRISE_MAX_USD=0.02` and `surveiller_entreprise` ($0.10) needs `0.10`.
+- The key stays on your machine. It only signs a USDC authorization for the exact amount the server asks, after the bridge checks it is USDC on Base and at most `VERIF_ENTREPRISE_MAX_USD` (default `0.01`, maximum `1`). The default refuses anything above $0.01, so `gel_avoirs` and `marches_publics` ($0.02) need `VERIF_ENTREPRISE_MAX_USD=0.02` and `surveiller_entreprise` ($0.10) needs `0.10`.
 - Each successful payment adds a line with its Base transaction hash to the tool result.
 - Do not use a wallet converted into a smart account (EIP-7702 delegation, which some wallets apply after a swap): USDC rejects its signature. A plain address works.
 
 | Variable | Default | Role |
 | --- | --- | --- |
 | `X402_PRIVATE_KEY` | none | Wallet that pays. Without it, only the free tool works. |
-| `VERIF_ENTREPRISE_MAX_USD` | `0.01` | Highest price accepted per call (`0.02` for `gel_avoirs`, `0.10` for `surveiller_entreprise`). |
+| `VERIF_ENTREPRISE_MAX_USD` | `0.01` | Highest price accepted per call (`0.02` for `gel_avoirs` and `marches_publics`, `0.10` for `surveiller_entreprise`). |
 | `VERIF_ENTREPRISE_URL` | production server | Remote MCP endpoint. |
 | `VERIF_ENTREPRISE_NETWORK` | `eip155:8453` | Network used to pay (Base mainnet; `eip155:84532` for Base Sepolia tests). |
 
