@@ -40,7 +40,7 @@ Webhook URLs must be public HTTPS on port 443, given as a domain name (not an IP
 }
 ```
 
-`type` is `procedure_collective`, `radiation` (deregistration) or `test`.
+`type` is `procedure_collective`, `radiation` (deregistration), `marche_public` (new public contract won, with a `marche` object: `id`, `acheteurSiret`, `cpv`, `procedure`, `montantEur`, `dateNotification`, `departement`, `objet`), `marche_public_resume` (summary with `nombreMarches` when more than 20 new contracts appear in one pass) or `test`. Ignore types you do not know: new ones may be added.
 
 ### Verify the webhook signature
 
